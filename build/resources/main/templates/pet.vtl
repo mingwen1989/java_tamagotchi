@@ -1,8 +1,33 @@
-<h1>$name</h1>
-<h3></h3>
+<form action="/home">
+  <button type="submit" class="btn" style="padding:0px 50px">Status</button>
+</form>
+
+<h3 style="padding:0px 25px">$nameInput</h1>
+<img src="/80541.gif">
 
 <form action="/pet">
-  <div class="form-group">
+  <button type="click" class="btn" style="float:left">Feed</button>
+  <input type="hidden" name="action" value="feed">
+</form>
+<form action="/pet">
+  <button type="click" class="btn" style="float:left">Starve</button>
+  <input type="hidden" name="action" value="starve">
+</form>
+<form action="/pet">
+  <button type="click" class="btn" style="float:left">Play</button>
+  <input type="hidden" name="action" value="play">
+</form>
+<br><form action="/pet">
+  <button type="click" class="btn" style="float:left">Clean</button>
+  <input type="hidden" name="action" value="clean">
+</form>
+<form action="/pet">
+  <button type="click" class="btn" style="float:left">Tuck</button>
+  <input type="hidden" name="action" value="starve">
+</form>
+<form action="/pet">
+  <button type="click" class="btn" style="float:left">Ignore</button>
+  <input type="hidden" name="action" value="ignore">
+</form>
 
-  <button type="submit" class="btn">Status</button>
 </form>

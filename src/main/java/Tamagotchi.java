@@ -4,12 +4,14 @@ public class Tamagotchi {
     private Integer mSleepLevel;
     private Integer mFoodLevel;
     private String mName;
+    private String mStatus;
 
-  public Tamagotchi(String name) {
+  public Tamagotchi(String name, String status) {
       mActivityLevel = 5;
       mSleepLevel = 5;
       mFoodLevel = 5;
       mName = name;
+      mStatus = status;
   }
 
   public Integer getFoodLevel() {
@@ -55,6 +57,21 @@ public class Tamagotchi {
       return mSleepLevel;
   }
 
+  public String status() {
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 20){
+        mStatus = "Happy";
+      }
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 15) {
+        mStatus = "Content";
+      }
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 10){
+        mStatus = "Tired";
+      }
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 0) {
+        mStatus = "Zero";
+      }
+      return mStatus;
+  }
 
   public boolean isAlive() {
       if (mActivityLevel + mSleepLevel + mFoodLevel > 5){

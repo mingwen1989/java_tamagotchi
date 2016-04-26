@@ -29,7 +29,7 @@ public class AppTest extends FluentTest {
     goTo("http://localhost:4567/");
     fill("#nameInput").with("Dragon");
     submit(".bth");
-    assertThat(pageSource()).contains("Drago");
+    assertThat(pageSource()).contains("Dragon");
   }
 
 }
