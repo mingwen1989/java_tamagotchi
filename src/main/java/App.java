@@ -11,7 +11,15 @@ public class App {
 
     get("/", (req, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/home.vtl");
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/pet", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("nameInput");
+      model.put("name", name);
+      model.put("template", "templates/pet.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

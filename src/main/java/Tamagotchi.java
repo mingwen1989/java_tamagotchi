@@ -55,30 +55,7 @@ public class Tamagotchi {
       return mSleepLevel;
   }
 
-  // public boolean isHappy() {
-  //     if (mActivityLevel + mSleepLevel + mFoodLevel > 20){
-  //       return true;
-  //     else {
-  //       return false;
-  //       }
-  // }}
-  //
-  // public boolean isContent() {
-  //     if (mActivityLevel + mSleepLevel + mFoodLevel > 15){
-  //       return true;
-  //     else {
-  //       return false;
-  //       }
-  // }}
-  //
-  // public boolean isTired() {
-  //     if (mActivityLevel + mSleepLevel + mFoodLevel > 10){
-  //       return true;
-  //     else {
-  //       return false;
-  //     }
-  // }}
-  //
+
   public boolean isAlive() {
       if (mActivityLevel + mSleepLevel + mFoodLevel > 5){
         return true;
