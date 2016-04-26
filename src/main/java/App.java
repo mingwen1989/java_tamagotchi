@@ -12,8 +12,9 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/index.vtl");
+      model.put("myPet", myPet);
       Tamagotchi myPet = new Tamagotchi("Dragon", "happy");
-
+      model.put("myPet", request.session().attribute(myPet));
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -24,7 +25,9 @@ public class App {
       request.session().attribute("nameInput", name);
       model.put("nameInput", request.session().attribute("nameInput"));
       model.put("template", "templates/pet.vtl");
-      Tamagotchi myPet = new Tamagotchi("Dragon", "happy");
+
+      model.put("myPet", name);
+      request.session().attribute("myPet");
 
       //action  will either be feed or sleep or? .equals()
       String action = request.queryParams("action");
