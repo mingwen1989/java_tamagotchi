@@ -43,7 +43,7 @@ public class Tamagotchi {
   }
 
   public Integer clean() {
-      mActivityLevel += 1;
+      mActivityLevel -= 1;
       return mActivityLevel;
   }
 
@@ -58,14 +58,17 @@ public class Tamagotchi {
   }
 
   public String status() {
-      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 20){
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) <= 20){
         mStatus = "Happy";
       }
-      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 15) {
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) <= 15) {
         mStatus = "Content";
       }
-      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 10){
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) <= 10){
         mStatus = "Tired";
+      }
+      if ((mActivityLevel + mSleepLevel + mFoodLevel) <= 0) {
+        mStatus = "Dead";
       }
       return mStatus;
   }
