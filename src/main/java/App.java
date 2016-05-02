@@ -12,59 +12,76 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/index.vtl");
-      model.put("myPet", myPet);
-      Tamagotchi myPet = new Tamagotchi("Dragon", "happy");
-      model.put("myPet", request.session().attribute(myPet));
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/pet", (request, response) -> {
+    post("/pet", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
 
-      String name = request.queryParams("nameInput");
-      request.session().attribute("nameInput", name);
-      model.put("nameInput", request.session().attribute("nameInput"));
+      String nameInput = request.queryParams("name");
+      request.session().attribute("name", nameInput);
+      model.put("name", nameInput);
       model.put("template", "templates/pet.vtl");
 
-      model.put("myPet", name);
-      request.session().attribute("myPet");
+      request.session().attribute("nameInput", nameInput);
+      model.put("nameInput", nameInput);
 
       //action  will either be feed or sleep or? .equals()
-      String action = request.queryParams("action");
+      if (request.session().attribute("newTamagotchi") != null) {
+        Tamagotchi newTamagotchi = request.session().attribute("newTamagotchi");
+        String action = request.queryParams("action");
 
       if (action != null ) {
         if (action.equals("feed")){
-          myPet.feed();
+          newTamagotchi.feed();
         } else if (action.equals("starve")) {
-          myPet.starve();
+          newTamagotchi.starve();
         } else if (action.equals("play")) {
-          myPet.play();
+          newTamagotchi.play();
+        } else if (action.equals("clean")) {
+          newTamagotchi.clean();
+        } else if (action.equals("tuck")) {
+          newTamagotchi.tuck();
+        } else if (action.equals("ignore")) {
+          newTamagotchi.ignore();
         }
       }
+      model.put("newTamagotchi", newTamagotchi);
 
-
-
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/home", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/home.vtl");
-      model.put("nameInput", request.session().attribute("nameInput"));
-      Tamagotchi myPet = new Tamagotchi("Dragon", "happy");
-
-      String tamagotchiStatus = myPet.status();
+      String tamagotchiStatus = newTamagotchi.status();
       model.put("tamagotchiStatus", tamagotchiStatus);
+    } else {
+        String name = request.queryParams("name");
+        String status = request.queryParams("status");
+        Tamagotchi newTamagotchi = new Tamagotchi(name, status);
+        request.session().attribute("newTamagotchi", newTamagotchi);
+        model.put("newTamagotchi", newTamagotchi);
 
-      String foodLevel = Integer.toString(myPet.getFoodLevel());
-      String sleepLevel = Integer.toString(myPet.getSleepLevel());
-      String activityLevel = Integer.toString(myPet.getActivityLevel());
-      model.put("foodLevel", foodLevel);
-      model.put("sleepLevel", sleepLevel);
-      model.put("activityLevel", activityLevel);
+        String tamagotchiStatus = newTamagotchi.status();
+        model.put("tamagotchiStatus", tamagotchiStatus);
+      }
 
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    // get("/home", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   model.put("template", "templates/home.vtl");
+    //   model.put("nameInput", request.session().attribute("nameInput"));
+    //   Tamagotchi newTamagotchi = new Tamagotchi("Dragon", "happy");
+    //
+    //   String tamagotchiStatus = newTamagotchi.status();
+    //   model.put("tamagotchiStatus", tamagotchiStatus);
+    //
+    //   String foodLevel = Integer.toString(newTamagotchi.getFoodLevel());
+    //   String sleepLevel = Integer.toString(newTamagotchi.getSleepLevel());
+    //   String activityLevel = Integer.toString(newTamagotchi.getActivityLevel());
+    //   model.put("foodLevel", foodLevel);
+    //   model.put("sleepLevel", sleepLevel);
+    //   model.put("activityLevel", activityLevel);
+    //
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
 
   }
 

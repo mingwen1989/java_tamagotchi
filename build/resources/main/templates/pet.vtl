@@ -1,33 +1,33 @@
-<form action="/home">
-  <button type="submit" class="btn" style="padding:0px 50px">Status</button>
-</form>
-
 <h3 style="padding:0px 25px">$nameInput</h1>
+
+<p style="margin: 0 auto">Status: $tamagotchiStatus</p>
+<p style="margin: 0 auto">Food: $newTamagotchi.getFoodLevel</p>
+<p style="margin: 0 auto">Sleep: $newTamagotchi.getSleepLevel</p>
+<p style="margin: 0 auto">Activity: $newTamagotchi.getActivityLevel</p>
+
 <img src="/80541.gif">
 
-<form action="/pet">
-  <button type="click" class="btn" style="float:left">Feed</button>
+<form action="/pet" method="post">
   <input type="hidden" name="action" value="feed">
+  <button type="click" class="btn" style="float:left">Feed</button>
 </form>
-<form action="/pet">
+<form action="/pet" method="post">
+  <input type="hidden" name="action" value="starve">
   <button type="click" class="btn" style="float:left">Starve</button>
-  <input type="hidden" name="action" value="starve">
 </form>
-<form action="/pet">
-  <button type="click" class="btn" style="float:left">Play</button>
+<form action="/pet" method="post">
   <input type="hidden" name="action" value="play">
+  <button type="click" class="btn" style="float:left">Play</button>
 </form>
-<br><form action="/pet">
-  <button type="click" class="btn" style="float:left">Clean</button>
+<br><form action="/pet" method="post" style="margin-top: 2px;">
   <input type="hidden" name="action" value="clean">
+  <button type="click" class="btn" style="float:left">Clean</button>
 </form>
-<form action="/pet">
-  <button type="click" class="btn" style="float:left">Tuck</button>
+<form action="/pet" method="post">
   <input type="hidden" name="action" value="starve">
+  <button type="click" class="btn" style="float:left">Tuck</button>
 </form>
-<form action="/pet">
-  <button type="click" class="btn" style="float:left">Ignore</button>
+<form action="/pet" method="post">
   <input type="hidden" name="action" value="ignore">
-</form>
-
+  <button type="click" class="btn" style="float:left">Ignore</button>
 </form>

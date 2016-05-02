@@ -67,9 +67,6 @@ public class Tamagotchi {
       if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 10){
         mStatus = "Tired";
       }
-      if ((mActivityLevel + mSleepLevel + mFoodLevel) >= 0) {
-        mStatus = "Zero";
-      }
       return mStatus;
   }
 
